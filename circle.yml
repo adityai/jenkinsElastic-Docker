@@ -4,10 +4,8 @@ dependencies:
    - sudo service docker start; sudo service docker status; sudo docker -v; sudo docker info;
    
   post:
-   - sudo docker run -d --name jenkinselastic -p 8080:8080 -v $HOME:/var/jenkins_home adityai/jenkinselastic-docker 
-   - sudo docker ps
-   - sudo docker save -o $HOME/jenkinsElasticDocker.tar jenkinselastic
-   - cp $HOME/jenkinsElasticDocker.tar $CIRCLE_ARTIFACTS
+   - mkdir jenkins_home/plugins; wget -P jenkins_home/plugins http://updates.jenkins-ci.org/latest/logstash.hpi
+   - sudo docker build -t="jenkinselastic" .
    
 deployment:
   dockerhub:
