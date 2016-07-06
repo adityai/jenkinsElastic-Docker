@@ -4,8 +4,7 @@ dependencies:
    - sudo service docker start; sudo service docker status; sudo docker -v; sudo docker info;
    
   post:
-   - sudo docker build -t="jenkinselastic" .
-   - sudo docker run -d -name jenkinselastic -p 8080:8080 -v $HOME:/var/jenkins_home jenkinselastic 
+   - sudo docker run -d --name jenkinselastic -p 8080:8080 -v $HOME:/var/jenkins_home adityai/jenkinselastic-docker 
    - sudo docker save -o $HOME/jenkinsElasticDocker.tar jenkinselastic
    - cp $HOME/jenkinsElasticDocker.tar $CIRCLE_ARTIFACTS
    
