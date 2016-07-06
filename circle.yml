@@ -6,6 +6,7 @@ dependencies:
   post:
    - mkdir jenkins_home/plugins; wget -P jenkins_home/plugins http://updates.jenkins-ci.org/latest/logstash.hpi
    - sudo docker build -t="jenkinselastic" .
+   - sudo docker run -d --name jenkinselastic -p 8080:8080 jenkinselastic
    
 deployment:
   dockerhub:
