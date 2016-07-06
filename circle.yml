@@ -1,7 +1,7 @@
 
 dependencies:
   pre: 
-   - sudo apt-get update; sudo apt-get install -y docker; sudo service docker start; sudo docker info;
+   - sudo apt-get update; sudo apt-get install -y docker; sudo service docker status; sudo docker -v; sudo docker info;
    
   post:
    - sudo docker build -t="jenkinselastic" .
