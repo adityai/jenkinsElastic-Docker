@@ -18,4 +18,4 @@ deployment:
       
 test:
   override:
-  - docker ps
+  - docker ps | grep jenkinselastic 
