@@ -4,7 +4,7 @@ dependencies:
    - sudo apt-get update; sudo apt-get install -y docker;
    
   post:
-   - sudo docker build -t=jenkinselastic .
+   - pwd; ls -ltr; sudo docker build -t=jenkinselastic .
    - sudo docker run -d -name jenkinselastic -p 8080:8080 -v $HOME:/var/jenkins_home jenkinselastic 
    - sudo docker save -o $HOME/jenkinsElasticDocker.tar jenkinselastic
    - cp $HOME/jenkinsElasticDocker.tar $CIRCLE_ARTIFACTS
