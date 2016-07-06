@@ -1,7 +1,7 @@
 
 dependencies:
   pre: 
-
+   - sudo service docker start; sudo service docker status; sudo docker -v; sudo docker info;
    
   post:
    - sudo docker build -t="jenkinselastic" .
