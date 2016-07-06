@@ -1,7 +1,8 @@
 
 dependencies:
   pre: 
-   - sudo apt-get update; sudo apt-get install docker.io;
+   - sudo apt-get update; sudo apt-get install -y docker.io;
+   
   post:
    - cd jenkinsElastic-Docker; sudo docker build -t jenkinsElastic .
    - sudo docker run -d -name jenkinsElasticContainer -p 8080:8080 -v $HOME:/var/jenkins_home jenkinsElastic 
