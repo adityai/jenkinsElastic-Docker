@@ -8,7 +8,7 @@ dependencies:
    - sudo docker build -t="jenkinselastic" .
    - sudo docker run -d --name jenkinselastic -p 8080:8080 jenkinselastic
    - sudo docker save -o $CIRCLE_ARTIFACTS/jenkinsElasticDocker.tar jenkinselastic
-   - chmod 655 install.sh && ./install.sh
+   - chmod 755 install.sh && ./install.sh
    - sudo docker save -o $CIRCLE_ARTIFACTS/elasticsearch.tar elasticsearch
    - sudo docker save -o $CIRCLE_ARTIFACTS/kibana.tar kibana
 
