@@ -7,8 +7,10 @@ dependencies:
    - mkdir jenkins_home/plugins; wget -P jenkins_home/plugins http://updates.jenkins-ci.org/latest/logstash.hpi
    - sudo docker build -t="jenkinselastic" .
    - sudo docker run -d --name jenkinselastic -p 8080:8080 jenkinselastic
+   - sudo docker run --name elasticsearch --hostname elasticsearch -p 9200:9200 -p 9300:9300 -d elasticsearch
+   - sudo docker run -p 8080:8080 -p 50000:50000 -v $HOME/jenkins_home:/var/jenkins_home --link elasticsearch:es --name jenkins -d jenkinselastic
+   - sudo docker run -e ELASTICSEARCH_URL=http://elasticsearch:9200 -p 5601:5601 --link elasticsearch:es --name kibana -d kibana
    - sudo docker save -o $CIRCLE_ARTIFACTS/jenkinsElasticDocker.tar jenkinselastic
-   - chmod 755 install.sh && ./install.sh
    - sudo docker save -o $CIRCLE_ARTIFACTS/elasticsearch.tar elasticsearch
    - sudo docker save -o $CIRCLE_ARTIFACTS/kibana.tar kibana
 
