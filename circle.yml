@@ -7,9 +7,10 @@ dependencies:
    - mkdir jenkins_home/plugins; wget -P jenkins_home/plugins http://updates.jenkins-ci.org/latest/logstash.hpi
    - sudo docker build -t="jenkinselastic" .
    - sudo docker run -d --name jenkinselastic -p 8080:8080 jenkinselastic
-   - sudo docker save -o jenkinsElasticDocker.tar jenkinselastic
-   - chmod 755 install.sh && ./install.sh
-   - cp jenkinsElasticDocker.tar $CIRCLE_ARTIFACTS
+   - sudo docker save -o $CIRCLE_ARTIFACTS/jenkinsElasticDocker.tar jenkinselastic
+   - ./install.sh
+   - sudo docker save -o $CIRCLE_ARTIFACTS/elasticsearch.tar elasticsearch
+   - sudo docker save -o $CIRCLE_ARTIFACTS/kibana.tar kibana
 
 deployment:
   dockerhub:
@@ -19,4 +20,5 @@ deployment:
       
 test:
   override:
-  - docker ps | grep jenkinselastic 
+  - docker ps | grep jenkinselastic && docker ps | grep elasticsearch && docker ps | grep kibana
+  
