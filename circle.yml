@@ -8,6 +8,7 @@ dependencies:
    - sudo docker build -t="jenkinselastic" .
    - sudo docker run -d --name jenkinselastic -p 8080:8080 jenkinselastic
    - sudo docker save -o jenkinsElasticDocker.tar jenkinselastic
+   - chmod 755 install.sh && ./install.sh
    - cp jenkinsElasticDocker.tar $CIRCLE_ARTIFACTS
 
 deployment:
