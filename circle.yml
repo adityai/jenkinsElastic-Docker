@@ -21,7 +21,5 @@ deployment:
       
 test:
   override:
-  - docker ps | grep jenkins 
-  - docker ps | grep elasticsearch 
-  - docker ps | grep kibana
+  - docker ps 
   
